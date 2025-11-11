@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🇺🇸 U.S. Citizenship Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Draggable title images -->
+  <div id="title-container" style="position:absolute; cursor:grab;">
+    <img src="BT.png" id="bt-img" />
+    <img src="AM.png" id="am-img" />
+  </div>
+
+  <div id="quiz-container">
+    <!-- Total Score -->
+    <p id="total-score-display">TOTAL SCORE: <span id="total">0</span></p>
+
+    <div id="quiz-content">
+      <button id="start-btn">Start Quiz</button>
+
+      <div id="question-box" style="display:none;">
+        <h2 id="question"></h2>
+        <div id="answers"></div>
+
+        <div id="scoreboard">
+          <p>PTS: <span id="score">0</span></p>
+          <p>MULTI: <span id="multi">0</span>X</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Single data file -->
+  <script src="questions.js"></script>
+
+  <!-- Main logic -->
+  <script src="script.js"></script>
+</body>
+</html>
