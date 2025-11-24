@@ -130,7 +130,6 @@ function applyAmendments(questionId, pts, multi) {
         break;
 
       case "Tax Exempt":
-        newPts *= 1.5;
         newMulti *= 1.5;
         activated = true;
         break;
