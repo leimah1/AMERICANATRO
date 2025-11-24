@@ -27,7 +27,7 @@ const amendments = [
     name: "Real State Genius",
     png: "realst.png",
     description: "+4 multi when question ID matches.",
-    questionIds: [1,21,46,47,55,78,79,85,90]
+    questionIds: [1,21,47,55,78,79,85,90]
   },
   {
     name: "The Champ",
