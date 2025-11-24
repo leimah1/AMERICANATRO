@@ -1,42 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🇺🇸 U.S. Citizenship Quiz</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>AMERICANATRO</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Amendments / Overlay styling */
+    #amendment-slots { display: flex; justify-content: center; margin: 12px 0; }
+    .amd-slot { width: 80px; height: 112px; margin: 0 6px; border: 2px dashed #444; display: flex; align-items: center; justify-content: center; }
+    .amd-active-card { width: 100%; height: 100%; border-radius: 6px; }
+
+    #amd-pick-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #amd-pick-box {
+      background: #111;
+      padding: 18px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+    }
+    #amd-pick-options { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+    .amd-pick-card { width: 120px; height: 168px; border-radius: 8px; cursor: pointer; border: 3px solid transparent; transition: border 0.2s; }
+    .amd-pick-card:hover { border-color: #0af; }
+
+    #amd-skip-btn {
+      margin-top: 12px;
+      padding: 6px 12px;
+      cursor: pointer;
+      background: #0af;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: bold;
+    }
+    #amd-skip-btn:hover { background: #08c; }
+  </style>
 </head>
 <body>
 
-  <!-- Draggable title images -->
-  <div id="title-container" style="position:absolute; cursor:grab;">
-    <img src="BT.png" id="bt-img" />
-    <img src="AM.png" id="am-img" />
+  <!-- Game Root -->
+  <div id="game-root">
+
+    <!-- BX1 shown initially. TT is centered inside BX1 -->
+    <div id="bx1" class="bx-image">
+      <div id="tt" class="tt-centered" role="button" aria-label="Start button"></div>
+    </div>
+
+    <!-- BX2 (quiz box) — hidden until quiz starts -->
+    <div id="bx2" class="bx-image bx2-image hidden">
+      <div id="quiz-inner" class="quiz-inner">
+
+        <!-- Question -->
+        <div id="question-text" class="question-text" aria-live="polite"></div>
+
+        <!-- Answers -->
+        <div id="answers" class="answers"></div>
+      </div>
+
+      <!-- Admin / test button -->
+      <div style="text-align:center; margin:10px 0;">
+        <button id="add-amd-btn">ADMIN CHEAT</button>
+      </div>
+
+      <!-- Active Amendment Slots -->
+      <div id="amendment-slots"></div>
+    </div>
+
   </div>
 
-  <div id="quiz-container">
-    <!-- Total Score -->
-    <p id="total-score-display">TOTAL SCORE: <span id="total">0</span></p>
-
-    <div id="quiz-content">
-      <button id="start-btn">Start Quiz</button>
-
-      <div id="question-box" style="display:none;">
-        <h2 id="question"></h2>
-        <div id="answers"></div>
-
-        <div id="scoreboard">
-          <p>PTS: <span id="score">0</span></p>
-          <p>MULTI: <span id="multi">0</span>X</p>
-        </div>
-      </div>
+  <!-- ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ -->
+  <!--         AMENDMENT PICK OVERLAY     -->
+  <!-- ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ -->
+  <div id="amd-pick-overlay" class="hidden">
+    <div id="amd-pick-box">
+      <h2 id="amd-pick-title">Pick ONE Amendment</h2>
+      <div id="amd-pick-options"></div>
+      <button id="amd-skip-btn">SKIP</button>
     </div>
   </div>
 
-  <!-- Single data file -->
-  <script src="questions.js"></script>
+  <!-- Audio -->
+  <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+  <audio id="upSound" src="up.mp3" preload="auto"></audio>
+  <audio id="downSound" src="down.mp3" preload="auto"></audio>
+  <audio id="ptsSound" src="pts.mp3" preload="auto"></audio>
+  <audio id="hundredSound" src="100.mp3" preload="auto"></audio>
+  <audio id="okSound" src="ok.mp3" preload="auto"></audio>
+  <audio id="newSound" src="new.mp3" preload="auto"></audio>
+  <audio id="badSound" src="bad.mp3" preload="auto"></audio>
 
-  <!-- Main logic -->
+  <!-- Game Logic -->
+  <script src="questions.js"></script>
+  <script src="amd.js"></script>
   <script src="script.js"></script>
+
+  <script>
+    // ----------------- AMD Pick Skip -----------------
+    const skipBtn = document.getElementById('amd-skip-btn');
+    if (skipBtn) skipBtn.addEventListener('click', () => {
+      document.getElementById('amd-pick-overlay').classList.add('hidden');
+    });
+  </script>
+
 </body>
 </html>
