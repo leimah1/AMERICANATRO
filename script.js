@@ -372,8 +372,8 @@ if (typeof applyAmendments === 'function') {
         // if (batchCount % 3 === 0) setTimeout(() => triggerAmendmentPick(), 120);
 
         updateScoreDisplays();
-        setTimeout(() => showNextQuestion(), 400);
-      }, 200);
+        setTimeout(() => showNextQuestion(), 1000);
+      }, 400);
     }
   }
 }
