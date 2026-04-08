@@ -3,7 +3,7 @@ const amendments = [
     name: "Mr President",
     png: "president.png",
     description: "Every right answer on this card’s question IDs grants +5 multi.",
-    questionIds: [0,6,10,16,19,27,34,39,45,48,53,72,93]
+    questionIds: [0,6,10,12,16,19,27,34,39,45,48,53,65,72,93,96,99]
   },
   {
     name: "International Affairs",
@@ -21,7 +21,7 @@ const amendments = [
     name: "Living the Dream",
     png: "livdr.png",
     description: "+10 multi on its matching question IDs.",
-    questionIds: [67,72]
+    questionIds: [10,39,67,72,96,99]
   },
   {
     name: "Real State Genius",
